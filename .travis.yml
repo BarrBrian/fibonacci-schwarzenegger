@@ -21,10 +21,10 @@ after_success:
   # Login to docker account - ENV variables set in TravisCI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # push the images to docker hub
-  - docker push -t brianbarr/fib-client
-  - docker push -t brianbarr/fib-nginx
-  - docker push -t brianbarr/fib-server
-  - docker push -t brianbarr/fib-worker
+  - docker push brianbarr/fib-client
+  - docker push brianbarr/fib-nginx
+  - docker push brianbarr/fib-server
+  - docker push brianbarr/fib-worker
 # THIS IS THE RECOMMENDED WAY TO DO IT FROM THE TRAVIS DOCS
 # deploy:
 #   provider: script
