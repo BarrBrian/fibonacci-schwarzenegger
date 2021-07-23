@@ -1,3 +1,5 @@
 FROM nginx
 
 COPY ./default.conf /etc/nginx/conf.d/default.conf
+
+# We don't need a Startup Command because the nginx image default is already "run"
