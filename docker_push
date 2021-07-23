@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+docker push -t brianbarr/fib-client
+docker push -t brianbarr/fib-nginx
+docker push -t brianbarr/fib-server
+docker push -t brianbarr/fib-worker

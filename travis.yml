@@ -1,0 +1,34 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+# We can add more testing here for other files and pieces if we had test written
+## Note we need to be more specific with our Dockerfile and build context
+before_install:
+  - docker build -t brianbarr/fib-client-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true brianbarr/fib-client-test npm run test
+
+after_success:
+  # Once the tests pass, build all the images
+  - docker build -t brianbarr/fib-client ./client
+  - docker build -t brianbarr/fib-nginx ./nginx
+  - docker build -t brianbarr/fib-server ./server
+  - docker build -t brianbarr/fib-worker ./worker
+  # Login to docker account - ENV variables set in TravisCI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # push the images to docker hub
+  - docker push -t brianbarr/fib-client
+  - docker push -t brianbarr/fib-nginx
+  - docker push -t brianbarr/fib-server
+  - docker push -t brianbarr/fib-worker
+# THIS IS THE RECOMMENDED WAY TO DO IT FROM THE TRAVIS DOCS
+# deploy:
+#   provider: script
+###script is a binary file in the root that essentially does what was above
+#   script: bash docker_push
+#   on:
+#     branch: master
