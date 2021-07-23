@@ -45,7 +45,7 @@ class Fib extends Component {
       entries.push(
         <div key={key}>
           For index {key} I calculated {this.state.values[key]}
-        </div>
+        </div>,
       );
     }
 
@@ -53,15 +53,20 @@ class Fib extends Component {
   }
 
   render() {
+    console.log('Fib component loaded');
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Enter your index:</label>
+          <h3>Calculate the n-th Fibonacci number</h3>
+          <label style={{ fontSize: '1.5em' }}>n = </label>
           <input
             value={this.state.index}
             onChange={(event) => this.setState({ index: event.target.value })}
+            style={{ width: '1.2em', height: '1.5em', fontSize: '1.5em' }}
           />
-          <button>Submit</button>
+          <span> </span>
+          <button style={{ height: '2em', fontSize: '1em' }}>Submit</button>
         </form>
 
         <h3>Indexes I have seen:</h3>
