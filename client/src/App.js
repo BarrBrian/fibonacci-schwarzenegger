@@ -14,7 +14,7 @@ function App() {
           <h1>Fibonacci Pro</h1>
           <ul style={{ display: 'inline', fontSize: '2em' }}>
             <li>
-              <Link to='/'>Calculator</Link>
+              <Link to='/'>The Calculator</Link>
             </li>
             <li>
               <Link to='/otherpage'>Other Page</Link>
