@@ -1,0 +1,43 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      // the name of our container in docker hub
+      "name": "client",
+      // the image repo on docker hub
+      "image": "brianbarr/fib-client",
+      // the name other containers will be able to use to connect to this container
+      "hostname": "client",
+      // if essential = true, if it crashes, then we will kill all containers in this group
+      // at least one service must be essential - often your routing server
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "brianbarr/fib-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "brianbarr/fib-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "brianbarr/fib-nginx",
+      // we don't have a hostname, because no external services reach into it
+      // it won't break to have it, but, we don't need it.
+      // nginx is our essential service, if it crashes, turn everything off.
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}

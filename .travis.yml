@@ -25,10 +25,17 @@ after_success:
   - docker push brianbarr/fib-nginx
   - docker push brianbarr/fib-server
   - docker push brianbarr/fib-worker
-# THIS IS THE RECOMMENDED WAY TO DO IT FROM THE TRAVIS DOCS
-# deploy:
-#   provider: script
-###script is a binary file in the root that essentially does what was above
-#   script: bash docker_push
-#   on:
-#     branch: master
+
+  deploy:
+    provider: elasticbeanstalk
+    region: 'us-east-2'
+    app: 'fib-pro'
+    env: 'Fibpro-env-1'
+    bucket_name: 'elasticbeanstalk-us-east-2-308385786692'
+    bucket_path: fib-pro
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+
