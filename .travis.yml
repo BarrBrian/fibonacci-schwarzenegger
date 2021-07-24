@@ -32,7 +32,7 @@ deploy:
   app: 'fib-pro'
   env: 'Fibpro-env-1'
   bucket_name: 'elasticbeanstalk-us-east-2-308385786692'
-  bucket_path: fib-pro
+  bucket_path: `fib-pro`
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY

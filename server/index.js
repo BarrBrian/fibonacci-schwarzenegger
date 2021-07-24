@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
@@ -14,7 +13,7 @@ const pgClient = new Pool({
   host: keys.pgHost,
   database: keys.pgDatabase,
   password: keys.pgPassword,
-  port: keys.pgKeys,
+  port: keys.pgPort,
 });
 
 pgClient.on('connect', (client) => {
