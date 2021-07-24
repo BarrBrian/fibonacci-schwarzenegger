@@ -5,24 +5,28 @@
       "name": "client",
       "image": "brianbarr/fib-client",
       "hostname": "client",
+      "memory": 128,
       "essential": false
     },
     {
       "name": "server",
       "image": "brianbarr/fib-server",
       "hostname": "api",
+      "memory": 128,
       "essential": false
     },
     {
       "name": "worker",
       "image": "brianbarr/fib-worker",
       "hostname": "worker",
+      "memory": 128,
       "essential": false
     },
     {
       "name": "nginx",
       "image": "brianbarr/fib-nginx",
       "essential": true,
+      "memory": 128,
       "portMappings": [
         {
           "hostPort": 80,

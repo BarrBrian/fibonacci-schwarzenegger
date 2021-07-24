@@ -8,6 +8,10 @@
       "image": "brianbarr/fib-client",
       // the name other containers will be able to use to connect to this container
       "hostname": "client",
+      // the amount of memory (in MB) we allocate to the service
+      // you should do some research to figure out how much memory you need to allocate for your
+      // specific instances on future projects
+      "memory": 128,
       // if essential = true, if it crashes, then we will kill all containers in this group
       // at least one service must be essential - often your routing server
       "essential": false
@@ -16,12 +20,14 @@
       "name": "server",
       "image": "brianbarr/fib-server",
       "hostname": "api",
+      "memory": 128,
       "essential": false
     },
     {
       "name": "worker",
       "image": "brianbarr/fib-worker",
       "hostname": "worker",
+      "memory": 128,
       "essential": false
     },
     {
@@ -30,6 +36,7 @@
       // we don't have a hostname, because no external services reach into it
       // it won't break to have it, but, we don't need it.
       // nginx is our essential service, if it crashes, turn everything off.
+      "memory": 128,
       "essential": true,
       "portMappings": [
         {
